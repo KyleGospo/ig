@@ -21,8 +21,8 @@ Wazero: the zero dependency WebAssembly runtime for Go developers.}
 
 %global golicenses      LICENSE NOTICE
 %global godocs          examples CONTRIBUTING.md RATIONALE.md README.md\\\
-                        cmd/wazero/README.md imports/README.md example\\\
-                        example site/README.md docs site/content/_index.md\\\
+                        cmd/wazero/README.md imports/README.md\\\
+                        site/README.md site/content/_index.md\\\
                         site/content/specs.md\\\
                         site/content/community/_index.md\\\
                         site/content/community/history.md\\\
@@ -78,7 +78,7 @@ install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 %files
 %license LICENSE NOTICE
 %doc examples CONTRIBUTING.md RATIONALE.md README.md cmd/wazero/README.md
-%doc imports/README.md example example site/README.md docs
+%doc imports/README.md site/README.md
 %doc site/content/_index.md site/content/specs.md
 %doc site/content/community/_index.md site/content/community/history.md
 %doc site/content/community/users.md site/content/languages/_index.md
