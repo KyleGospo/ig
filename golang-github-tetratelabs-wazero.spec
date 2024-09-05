@@ -20,17 +20,7 @@ Version:                1.8.0
 Wazero: the zero dependency WebAssembly runtime for Go developers.}
 
 %global golicenses      LICENSE NOTICE
-%global godocs          examples CONTRIBUTING.md RATIONALE.md README.md\\\
-                        cmd/wazero/README.md imports/README.md\\\
-                        site/README.md site/content/_index.md\\\
-                        site/content/specs.md\\\
-                        site/content/community/_index.md\\\
-                        site/content/community/history.md\\\
-                        site/content/community/users.md\\\
-                        site/content/languages/_index.md\\\
-                        site/content/languages/rust.md\\\
-                        site/content/languages/tinygo.md\\\
-                        site/content/languages/zig.md
+%global godocs          CONTRIBUTING.md RATIONALE.md README.md
 
 Name:           golang-github-tetratelabs-wazero
 Release:        %autorelease
@@ -46,7 +36,6 @@ Source:         %{gosource}
 
 %prep
 %goprep -A
-%autopatch -p1
 
 %if %{without bootstrap}
 %generate_buildrequires
@@ -77,14 +66,8 @@ install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 %if %{without bootstrap}
 %files
 %license LICENSE NOTICE
-%doc examples CONTRIBUTING.md RATIONALE.md README.md cmd/wazero/README.md
-%doc imports/README.md site/README.md
-%doc site/content/_index.md site/content/specs.md
-%doc site/content/community/_index.md site/content/community/history.md
-%doc site/content/community/users.md site/content/languages/_index.md
-%doc site/content/languages/rust.md site/content/languages/tinygo.md
-%doc site/content/languages/zig.md
-#%%{_bindir}/*
+%doc CONTRIBUTING.md RATIONALE.md README.md
+%{_bindir}/wazero
 %endif
 
 %gopkgfiles
