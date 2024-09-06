@@ -10,7 +10,6 @@
 # https://github.com/bradleyfalzon/ghinstallation
 %global goipath         github.com/bradleyfalzon/ghinstallation
 Version:                2.11.0
-Version:                v2.11.0
 %global tag             v2.11.0
 
 %gometa -f
