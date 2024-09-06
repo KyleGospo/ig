@@ -10,24 +10,24 @@
 %global __requires_exclude %{?__requires_exclude:%{__requires_exclude}|}^golang\\(.*\\)$
 %endif
 
-# https://github.com/google/go-github
-%global goipath         github.com/google/go-github
-Version:                64.0.0
-%global tag             v64.0.0
+# https://github.com/quay/claircore
+%global goipath         github.com/quay/claircore
+Version:                1.5.30
 
 %gometa -f
 
 %global common_description %{expand:
-Go library for accessing the GitHub v3 API.}
+Foundation modules for scanning container packages and reporting
+vulnerabilities.}
 
 %global golicenses      LICENSE
-%global godocs          README.md
+%global godocs          docs README.md
 
-Name:           golang-github-google
+Name:           golang-github-quay-claircore
 Release:        %autorelease
-Summary:        Go library for accessing the GitHub v3 API
+Summary:        Foundation modules for scanning container packages and reporting vulnerabilities
 
-License:        BSD-3-Clause
+License:        Apache-2.0
 URL:            %{gourl}
 Source:         %{gosource}
 
@@ -45,7 +45,7 @@ Source:         %{gosource}
 
 %if %{without bootstrap}
 %build
-for cmd in github update-urls; do
+for cmd in java/jar toolkit/types/cpe; do
   %gobuild -o %{gobuilddir}/bin/$(basename $cmd) %{goipath}/$cmd
 done
 %endif
@@ -66,9 +66,9 @@ install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 
 %if %{without bootstrap}
 %files
-%license LICENSE github/licenses.go github/licenses_test.go
-%doc example AUTHORS CONTRIBUTING.md README.md example scrape/README.md
-# %%{_bindir}/*
+%license LICENSE
+%doc docs README.md
+#%%{_bindir}/*
 %endif
 
 %gopkgfiles

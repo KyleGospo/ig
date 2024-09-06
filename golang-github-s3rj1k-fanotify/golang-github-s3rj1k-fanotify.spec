@@ -7,24 +7,23 @@
 %global __requires_exclude %{?__requires_exclude:%{__requires_exclude}|}^golang\\(.*\\)$
 %endif
 
-# https://github.com/AzureAD/microsoft-authentication-extensions-for-go
-%global goipath         github.com/AzureAD/microsoft-authentication-extensions-for-go
-Version:                0.1.1
-%global tag             cache/v0.1.1
+# https://github.com/s3rj1k/go-fanotify
+%global goipath         github.com/s3rj1k/go-fanotify
+Version:                1.1.0
 
 %gometa -f
 
 %global common_description %{expand:
-Secure cross-platform token cache for MSAL public client apps.}
+Golang fanotify example.}
 
 %global golicenses      LICENSE
-%global godocs          cache/README.md
+%global godocs          README.md
 
-Name:           golang-github-azuread-microsoft-authentication-extensions-cache
+Name:           golang-github-s3rj1k-fanotify
 Release:        %autorelease
-Summary:        Secure cross-platform token cache for MSAL public client apps
+Summary:        Golang fanotify example
 
-License:        BSD-3-Clause AND MIT
+License:        MIT
 URL:            %{gourl}
 Source:         %{gosource}
 

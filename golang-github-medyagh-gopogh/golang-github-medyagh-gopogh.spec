@@ -10,21 +10,21 @@
 %global __requires_exclude %{?__requires_exclude:%{__requires_exclude}|}^golang\\(.*\\)$
 %endif
 
-# https://github.com/tetratelabs/wazero
-%global goipath         github.com/tetratelabs/wazero
-Version:                1.8.0
+# https://github.com/medyagh/gopogh
+%global goipath         github.com/medyagh/gopogh
+Version:                0.28.0
 
 %gometa -f
 
 %global common_description %{expand:
-Wazero: the zero dependency WebAssembly runtime for Go developers.}
+Generate pretty html out of golang's test logs.}
 
 %global golicenses      LICENSE
 %global godocs          README.md
 
-Name:           golang-github-tetratelabs-wazero
+Name:           golang-github-medyagh-gopogh
 Release:        %autorelease
-Summary:        Wazero: the zero dependency WebAssembly runtime for Go developers
+Summary:        Generate pretty html out of golang's test logs
 
 License:        Apache-2.0
 URL:            %{gourl}
@@ -45,6 +45,9 @@ Source:         %{gosource}
 %if %{without bootstrap}
 %build
 for cmd in cmd/* ; do
+  %gobuild -o %{gobuilddir}/bin/$(basename $cmd) %{goipath}/$cmd
+done
+for cmd in hack/timealign; do
   %gobuild -o %{gobuilddir}/bin/$(basename $cmd) %{goipath}/$cmd
 done
 %endif

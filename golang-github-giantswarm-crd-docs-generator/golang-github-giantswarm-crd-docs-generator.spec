@@ -10,21 +10,22 @@
 %global __requires_exclude %{?__requires_exclude:%{__requires_exclude}|}^golang\\(.*\\)$
 %endif
 
-# https://github.com/tetratelabs/wazero
-%global goipath         github.com/tetratelabs/wazero
-Version:                1.8.0
+# https://github.com/giantswarm/crd-docs-generator
+%global goipath         github.com/giantswarm/crd-docs-generator
+Version:                0.11.1
 
 %gometa -f
 
 %global common_description %{expand:
-Wazero: the zero dependency WebAssembly runtime for Go developers.}
+Tooling to create user-friendly reference documentation for Kubernetes Custom
+Resource Definitions (CRDs).}
 
 %global golicenses      LICENSE
 %global godocs          README.md
 
-Name:           golang-github-tetratelabs-wazero
+Name:           golang-github-giantswarm-crd-docs-generator
 Release:        %autorelease
-Summary:        Wazero: the zero dependency WebAssembly runtime for Go developers
+Summary:        Tooling to create user-friendly reference documentation for Kubernetes Custom Resource Definitions (CRDs)
 
 License:        Apache-2.0
 URL:            %{gourl}
@@ -44,9 +45,7 @@ Source:         %{gosource}
 
 %if %{without bootstrap}
 %build
-for cmd in cmd/* ; do
-  %gobuild -o %{gobuilddir}/bin/$(basename $cmd) %{goipath}/$cmd
-done
+%gobuild -o %{gobuilddir}/bin/crd-docs-generator %{goipath}
 %endif
 
 %install
@@ -67,7 +66,7 @@ install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 %files
 %license LICENSE
 %doc README.md
-#%%{_bindir}/*
+%{_bindir}/crd-docs-generator
 %endif
 
 %gopkgfiles

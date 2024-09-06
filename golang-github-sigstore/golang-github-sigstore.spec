@@ -7,22 +7,21 @@
 %global __requires_exclude %{?__requires_exclude:%{__requires_exclude}|}^golang\\(.*\\)$
 %endif
 
-# https://github.com/bradleyfalzon/ghinstallation
-%global goipath         github.com/bradleyfalzon/ghinstallation
-Version:                2.11.0
-%global tag             v2.11.0
+# https://github.com/sigstore/sigstore
+%global goipath         github.com/sigstore/sigstore
+Version:                1.8.9
 
 %gometa -f
 
 %global common_description %{expand:
-HTTP Round Tripper for GitHub Apps - Authenticate as an Installation Workflow.}
+Common go library shared across sigstore services and clients.}
 
-%global golicenses      LICENSE
-%global godocs          AUTHORS README.md
+%global golicenses      COPYRIGHT.txt LICENSE
+%global godocs          docs README.md
 
-Name:           golang-github-bradleyfalzon-ghinstallation
+Name:           golang-github-sigstore
 Release:        %autorelease
-Summary:        HTTP Round Tripper for GitHub Apps - Authenticate as an Installation Workflow
+Summary:        Common go library shared across sigstore services and clients
 
 License:        Apache-2.0
 URL:            %{gourl}

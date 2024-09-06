@@ -10,23 +10,23 @@
 %global __requires_exclude %{?__requires_exclude:%{__requires_exclude}|}^golang\\(.*\\)$
 %endif
 
-# https://github.com/tetratelabs/wazero
-%global goipath         github.com/tetratelabs/wazero
-Version:                1.8.0
+# https://github.com/containers/common
+%global goipath         github.com/containers/common
+Version:                0.60.2
 
 %gometa -f
 
 %global common_description %{expand:
-Wazero: the zero dependency WebAssembly runtime for Go developers.}
+Location for shared common files in github.com/containers repos.}
 
-%global golicenses      LICENSE
-%global godocs          README.md
+%global golicenses      LICENSE pkg/report/camelcase/LICENSE.md
+%global godocs          docs README.md
 
-Name:           golang-github-tetratelabs-wazero
+Name:           golang-github-containers-common
 Release:        %autorelease
-Summary:        Wazero: the zero dependency WebAssembly runtime for Go developers
+Summary:        Location for shared common files in github.com/containers repos
 
-License:        Apache-2.0
+License:        MIT AND Apache-2.0
 URL:            %{gourl}
 Source:         %{gosource}
 
@@ -47,6 +47,9 @@ Source:         %{gosource}
 for cmd in cmd/* ; do
   %gobuild -o %{gobuilddir}/bin/$(basename $cmd) %{goipath}/$cmd
 done
+for cmd in libnetwork/netavark/testplugin pkg/seccomp; do
+  %gobuild -o %{gobuilddir}/bin/$(basename $cmd) %{goipath}/$cmd
+done
 %endif
 
 %install
@@ -65,8 +68,8 @@ install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 
 %if %{without bootstrap}
 %files
-%license LICENSE
-%doc README.md
+%license LICENSE pkg/report/camelcase/LICENSE.md
+%doc docs README.md
 #%%{_bindir}/*
 %endif
 
