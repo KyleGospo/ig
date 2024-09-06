@@ -12,8 +12,8 @@
 
 # https://github.com/google/go-github
 %global goipath         github.com/google/go-github
-Version:                53.0.0
-%global tag             v53.0.0
+Version:                64.0.0
+%global tag             v64.0.0
 
 %gometa -f
 
