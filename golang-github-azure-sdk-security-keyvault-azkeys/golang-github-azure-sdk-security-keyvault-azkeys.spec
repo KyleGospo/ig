@@ -41,7 +41,6 @@ Source:         %{gosource}
 
 %prep
 %goprep -A
-%autopatch -p1
 
 %if %{without bootstrap}
 %generate_buildrequires
