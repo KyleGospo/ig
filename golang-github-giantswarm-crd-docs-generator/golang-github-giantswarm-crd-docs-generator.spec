@@ -31,6 +31,9 @@ License:        Apache-2.0
 URL:            %{gourl}
 Source:         %{gosource}
 
+# Required for tests to complete
+BuildRequires:  git
+
 %description %{common_description}
 
 %gopkg
