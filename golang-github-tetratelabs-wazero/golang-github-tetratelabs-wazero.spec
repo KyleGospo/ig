@@ -67,7 +67,7 @@ install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 %files
 %license LICENSE
 %doc README.md
-#%%{_bindir}/*
+%{_bindir}/wazero
 %endif
 
 %gopkgfiles
