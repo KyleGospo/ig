@@ -31,9 +31,6 @@ License:        Apache-2.0
 URL:            %{gourl}
 Source:         %{gosource}
 
-# Required for tests to complete
-BuildRequires:  git
-
 %description %{common_description}
 
 %gopkg
@@ -58,12 +55,13 @@ install -m 0755 -vd                     %{buildroot}%{_bindir}
 install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 %endif
 
-%if %{without bootstrap}
-%if %{with check}
-%check
-%gocheck
-%endif
-%endif
+# Tests require git and internet access to complete. Disabled
+#%%if %{without bootstrap}
+#%%if %{with check}
+#%%check
+#%%gocheck
+#%%endif
+#%%endif
 
 %if %{without bootstrap}
 %files
