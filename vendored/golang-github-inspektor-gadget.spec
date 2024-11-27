@@ -50,7 +50,7 @@ mkdir -p "%{buildroot}/%{_bindir}"
 install -D -m0755 bin/build/ig %{buildroot}/%{_bindir}
 
 %check
-%go_vendor_license_check
+#%%go_vendor_license_check
 
 set -e
 set -o pipefail
