@@ -50,6 +50,14 @@ mkdir -p "%{buildroot}/%{_bindir}"
 install -D -m0755 bin/build/ig %{buildroot}/%{_bindir}
 
 %check
+# Temporarily disabled until the following can be addressed:
+# + go_vendor_license report expression --verify 'Apache-2.0 AND BSD-2-Clause AND BSD-3-Clause AND GPL-2.0-only AND ISC AND MIT AND MPL-2.0'
+# Using detector: trivy
+# The following modules are missing license files:
+# - vendor/github.com/BurntSushi/toml
+# - vendor/github.com/go-errors/errors
+# - vendor/github.com/google/shlex
+# Apache-2.0 AND BSD-2-Clause AND BSD-3-Clause AND GPL-2.0-only AND ISC AND MIT AND MPL-2.0
 #%%go_vendor_license_check
 
 set -e
