@@ -17,10 +17,15 @@ Summary:        Inspektor Gadget is a set of tools and framework for data collec
 License:        Apache-2.0 AND BSD-2-Clause AND BSD-3-Clause AND GPL-2.0-only AND ISC AND MIT AND MPL-2.0
 Vendor:         Microsoft Corporation
 URL:            %{gourl}
-Source0:        %{gosource}
+
 # spectool -g golang-github-inspektor-gadget.spec
+Source0:        %{gosource}
 # go_vendor_archive create golang-github-inspektor-gadget.spec 
 Source1:        %{archivename}-vendor.tar.xz
+# go_vendor_license --config go-vendor-tools.toml explicit -f vendor/github.com/go-errors/errors/LICENSE.MIT MIT
+# go_vendor_license --config go-vendor-tools.toml explicit -f vendor/github.com/google/shlex/COPYING Apache-2.0
+# go_vendor_license --config go-vendor-tools.toml explicit -f vendor/github.com/BurntSushi/toml/COPYING MIT
+Source2:        go-vendor-tools.toml
 
 BuildRequires:  go-vendor-tools
 
@@ -34,7 +39,7 @@ This package contains ig, the local CLI flavor of Inspektor Gadget.
 %setup -q -T -D -a1 %{forgesetupargs}
 
 %generate_buildrequires
-%go_vendor_license_buildrequires
+%go_vendor_license_buildrequires -c %{SOURCE2}
 
 %build
 CGO_ENABLED=0 go build \
@@ -45,20 +50,13 @@ CGO_ENABLED=0 go build \
     -o ./bin/build/ig ./cmd/ig
 
 %install
-%go_vendor_license_install
+%go_vendor_license_install -c %{SOURCE2}
+
 mkdir -p "%{buildroot}/%{_bindir}"
 install -D -m0755 bin/build/ig %{buildroot}/%{_bindir}
 
 %check
-# Temporarily disabled until the following can be addressed:
-# + go_vendor_license report expression --verify 'Apache-2.0 AND BSD-2-Clause AND BSD-3-Clause AND GPL-2.0-only AND ISC AND MIT AND MPL-2.0'
-# Using detector: trivy
-# The following modules are missing license files:
-# - vendor/github.com/BurntSushi/toml
-# - vendor/github.com/go-errors/errors
-# - vendor/github.com/google/shlex
-# Apache-2.0 AND BSD-2-Clause AND BSD-3-Clause AND GPL-2.0-only AND ISC AND MIT AND MPL-2.0
-#%%go_vendor_license_check
+%go_vendor_license_check -c %{SOURCE2}
 
 set -e
 set -o pipefail
