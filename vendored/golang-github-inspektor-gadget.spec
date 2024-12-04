@@ -15,13 +15,21 @@ Release:        %autorelease
 Summary:        Inspektor Gadget is a set of tools and framework for data collection and system inspection on Kubernetes clusters and Linux hosts using eBPF
 # Validated by trivy
 License:        Apache-2.0 AND BSD-2-Clause AND BSD-3-Clause AND GPL-2.0-only AND ISC AND MIT AND MPL-2.0
-Vendor:         Microsoft Corporation
 URL:            %{gourl}
+
+%global _description %{expand:
+Inspektor Gadget is a collection of tools (or gadgets) to debug and inspect Kubernetes resources and applications.
+It manages the packaging, deployment and execution of eBPF programs in a Kubernetes cluster, including many based on BCC tools, as well as some developed specifically for use in Inspektor Gadget.
+It automatically maps low-level kernel primitives to high-level Kubernetes resources, making it easier and quicker to find the relevant information.
+
+This package contains ig, the local CLI flavor of Inspektor Gadget.
+}
 
 # spectool -g golang-github-inspektor-gadget.spec
 Source0:        %{gosource}
 # go_vendor_archive create golang-github-inspektor-gadget.spec 
 Source1:        %{archivename}-vendor.tar.xz
+# Fix for trivy being unable to detect some licenses
 # go_vendor_license --config go-vendor-tools.toml explicit -f vendor/github.com/go-errors/errors/LICENSE.MIT MIT
 # go_vendor_license --config go-vendor-tools.toml explicit -f vendor/github.com/google/shlex/COPYING Apache-2.0
 # go_vendor_license --config go-vendor-tools.toml explicit -f vendor/github.com/BurntSushi/toml/COPYING MIT
@@ -30,9 +38,7 @@ Source2:        go-vendor-tools.toml
 BuildRequires:  go-vendor-tools
 
 %description
-Inspektor Gadget is a collection of tools (or gadgets) to debug and inspect Kubernetes resources and applications. It manages the packaging, deployment and execution of eBPF programs in a Kubernetes cluster, including many based on BCC tools, as well as some developed specifically for use in Inspektor Gadget. It automatically maps low-level kernel primitives to high-level Kubernetes resources, making it easier and quicker to find the relevant information.
-
-This package contains ig, the local CLI flavor of Inspektor Gadget.
+%{_description}
 
 %prep
 %goprep -A
