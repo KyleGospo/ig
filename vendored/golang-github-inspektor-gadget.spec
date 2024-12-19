@@ -18,9 +18,13 @@ License:        Apache-2.0 AND BSD-2-Clause AND BSD-3-Clause AND GPL-2.0-only AN
 URL:            %{gourl}
 
 %global _description %{expand:
-Inspektor Gadget is a collection of tools (or gadgets) to debug and inspect Kubernetes resources and applications.
-It manages the packaging, deployment and execution of eBPF programs in a Kubernetes cluster, including many based on BCC tools, as well as some developed specifically for use in Inspektor Gadget.
-It automatically maps low-level kernel primitives to high-level Kubernetes resources, making it easier and quicker to find the relevant information.
+Inspektor Gadget is a collection of tools (or gadgets) to debug and inspect
+Kubernetes resources and applications.
+It manages the packaging, deployment and execution of eBPF programs in a
+Kubernetes cluster, including many based on BCC tools, as well as some
+developed specifically for use in Inspektor Gadget.
+It automatically maps low-level kernel primitives to high-level Kubernetes
+resources, making it easier and quicker to find the relevant information.
 
 This package contains ig, the local CLI flavor of Inspektor Gadget.
 }
@@ -42,7 +46,7 @@ BuildRequires:  go-vendor-tools
 
 %prep
 %goprep -A
-%setup -q -T -D -a1 %{forgesetupargs}
+%autosetup -a1 %{forgesetupargs}
 
 %generate_buildrequires
 %go_vendor_license_buildrequires -c %{SOURCE2}
