@@ -1,6 +1,10 @@
 [archive]
 
 [[licensing.licenses]]
+path = "LICENSE-bpf.txt"
+sha256sum = "7a83d7bd42c0c13bb77d9b4e76a08d3aa8b0ca71189573ddc8bb1d06d094abf0"
+expression = "GPL-2.0-only WITH Linux-syscall-note"
+[[licensing.licenses]]
 path = "vendor/github.com/go-errors/errors/LICENSE.MIT"
 sha256sum = "4c1b2259f160d975ec6594b602be5db4e6c0c06afe312ca3cd7cff91b75c7c26"
 expression = "MIT"

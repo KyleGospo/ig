@@ -14,7 +14,7 @@ Name:           golang-github-inspektor-gadget
 Release:        %autorelease
 Summary:        Tools and framework for data collection and system inspection on Kubernetes clusters and Linux hosts using eBPF
 # Validated by trivy
-License:        Apache-2.0 AND BSD-2-Clause AND BSD-3-Clause AND GPL-2.0-only AND ISC AND MIT AND MPL-2.0
+License:        Apache-2.0 AND BSD-2-Clause AND BSD-3-Clause AND GPL-2.0-only WITH Linux-syscall-note AND ISC AND MIT AND MPL-2.0
 URL:            %{gourl}
 
 %global _description %{expand:
@@ -34,6 +34,7 @@ Source0:        %{gosource}
 # go_vendor_archive create golang-github-inspektor-gadget.spec 
 Source1:        %{archivename}-vendor.tar.xz
 # Fix for trivy being unable to detect some licenses
+# go_vendor_license --config go-vendor-tools.toml explicit -f LICENSE-bpf.txt "GPL-2.0-only WITH Linux-syscall-note"
 # go_vendor_license --config go-vendor-tools.toml explicit -f vendor/github.com/go-errors/errors/LICENSE.MIT MIT
 # go_vendor_license --config go-vendor-tools.toml explicit -f vendor/github.com/google/shlex/COPYING Apache-2.0
 # go_vendor_license --config go-vendor-tools.toml explicit -f vendor/github.com/BurntSushi/toml/COPYING MIT
