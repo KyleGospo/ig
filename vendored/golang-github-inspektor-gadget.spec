@@ -12,7 +12,7 @@ Version:                0.34.0
 
 Name:           golang-github-inspektor-gadget
 Release:        %autorelease
-Summary:        Inspektor Gadget is a set of tools and framework for data collection and system inspection on Kubernetes clusters and Linux hosts using eBPF
+Summary:        Tools and framework for data collection and system inspection on Kubernetes clusters and Linux hosts using eBPF
 # Validated by trivy
 License:        Apache-2.0 AND BSD-2-Clause AND BSD-3-Clause AND GPL-2.0-only AND ISC AND MIT AND MPL-2.0
 URL:            %{gourl}
@@ -49,6 +49,10 @@ BuildRequires:  go-vendor-tools
 # Required to unpack vendor on top of main
 %setup -q -T -D -a1 %{forgesetupargs}
 %autopatch -p1
+
+# Remove some bash scripts wrongly included in the license directory by %go_vendor_license_install
+rm -r tools
+rm -r hack
 
 %generate_buildrequires
 %go_vendor_license_buildrequires -c %{SOURCE2}
