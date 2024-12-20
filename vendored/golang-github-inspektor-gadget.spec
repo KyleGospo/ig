@@ -62,13 +62,13 @@ rm -r hack
 export GO_LDFLAGS="-X %{goipath}/internal/version.version=v%{version} \
   -X %{goipath}/cmd/common/image.builderImage=ghcr.io/inspektor-gadget/ebpf-builder:v%{version}"
 export GO_BUILDTAGS="netgo"
-go build %{gobuildflags} -o %{gobuilddir}/bin/build/ig %{goipath}/cmd/ig
+go build %{gobuildflags} -o %{gobuilddir}/bin/ig %{goipath}/cmd/ig
 
 %install
 %go_vendor_license_install -c %{SOURCE2}
 
 mkdir -p "%{buildroot}/%{_bindir}"
-install -D -m0755 %{gobuilddir}/bin/build/ig %{buildroot}/%{_bindir}
+install -D -m0755 %{gobuilddir}/bin/ig %{buildroot}/%{_bindir}
 
 %check
 %go_vendor_license_check -c %{SOURCE2}
