@@ -12,7 +12,7 @@ Version:                0.34.0
 
 Name:           golang-github-inspektor-gadget
 Release:        %autorelease
-Summary:        Tools and framework for data collection and system inspection on Kubernetes clusters and Linux hosts using eBPF
+Summary:        Tools and framework for data collection and system inspection using eBPF
 # Validated by trivy
 License:        Apache-2.0 AND BSD-2-Clause AND BSD-3-Clause AND GPL-2.0-only WITH Linux-syscall-note AND ISC AND MIT AND MPL-2.0
 URL:            %{gourl}
