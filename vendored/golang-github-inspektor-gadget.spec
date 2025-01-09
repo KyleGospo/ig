@@ -3,7 +3,7 @@
 # https://github.com/inspektor-gadget/inspektor-gadget
 # https://github.com/microsoft/azurelinux/tree/3.0/SPECS/ig
 %global goipath         github.com/inspektor-gadget/inspektor-gadget
-Version:                0.34.0
+Version:                0.36.0
 
 %gometa -L -f
 
@@ -48,9 +48,12 @@ BuildRequires:  go-vendor-tools
 %setup -q -T -D -a1 %{forgesetupargs}
 %autopatch -p1
 
-# Remove some bash scripts wrongly included in the license directory by %go_vendor_license_install
+# Remove some bash scripts wrongly included in the license directory by go_vendor_license_install
 rm -r tools
 rm -r hack
+rm vendor/k8s.io/code-generator/generate-groups.sh
+rm vendor/k8s.io/code-generator/generate-internal-groups.sh
+rm vendor/k8s.io/code-generator/kube_codegen.sh
 
 %generate_buildrequires
 %go_vendor_license_buildrequires -c %{SOURCE2}
@@ -101,6 +104,9 @@ fi
 %{_bindir}/ig
 
 %changelog
+* Thu Jan 09 2025 Kyle Gospodnetich <kylego@microsoft.com> - 0.36.0-1
+- Bump to version 0.36.0
+
 * Wed Nov 27 2024 Kyle Gospodnetich <kylego@microsoft.com> - 0.34.0-1
 - Bump to version 0.34.0
 
@@ -127,7 +133,7 @@ fi
 - Bump to version 0.26.0
 
 * Tue Mar 14 2023 Francis Laniel <flaniel@linux.microsoft.com> - 0.25.0-2
-- Fix %check.
+- Fix check.
 
 * Tue Feb 14 2023 Francis Laniel <flaniel@linux.microsoft.com> - 0.25.0-1
 - Original version for Azure Linux
