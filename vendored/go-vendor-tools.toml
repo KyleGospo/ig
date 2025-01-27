@@ -16,3 +16,16 @@ expression = "Apache-2.0"
 path = "vendor/github.com/BurntSushi/toml/COPYING"
 sha256sum = "d21cb1c60785d6d3a84a7059323ccafc45c645b1bbda281c76a62d66ad2d7dc3"
 expression = "MIT"
+
+[licensing]
+detector = "trivy"
+exclude_files = [
+    "vendor/k8s.io/code-generator/generate-groups.sh",
+    "vendor/k8s.io/code-generator/generate-internal-groups.sh",
+    "vendor/k8s.io/code-generator/kube_codegen.sh",
+]
+
+pre_commands = [
+    ["rm", "-rf", "tools"],
+    ["rm", "-rf", "hacks"],
+]
