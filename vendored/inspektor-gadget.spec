@@ -14,6 +14,9 @@ Summary:        Tools and framework for data collection and system inspection us
 License:        Apache-2.0 AND BSD-2-Clause AND BSD-3-Clause AND GPL-2.0-only WITH Linux-syscall-note AND ISC AND MIT AND MPL-2.0
 URL:            %{gourl}
 
+# Inspektor Gadget can only be used on architectures it's respective gadgets are built for, currently this includes only x86 and ARM.
+ExclusiveArch:  %{ix86} x86_64 %{arm} aarch64
+
 %global _description %{expand:
 Inspektor Gadget is a collection of tools (or gadgets) to debug and inspect
 Kubernetes resources and applications.
