@@ -15,7 +15,7 @@ License:        Apache-2.0 AND BSD-2-Clause AND BSD-3-Clause AND GPL-2.0-only WI
 URL:            %{gourl}
 
 # Inspektor Gadget can only be used on architectures it's respective gadgets are built for, currently this includes only x86 and ARM.
-ExclusiveArch:  %{ix86} x86_64 %{arm} aarch64
+ExcludeArch:    s390x ppc64le ppc64
 
 %global _description %{expand:
 Inspektor Gadget is a collection of tools (or gadgets) to debug and inspect
